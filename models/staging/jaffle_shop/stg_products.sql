@@ -7,7 +7,7 @@ renamed as (
         sku as product_sku,
         name as product_name,
         type as product_type,
-        price as product_price,
+        {{ cents_to_dollars('price') }} as product_price,
         description as product_description
     from source
 )

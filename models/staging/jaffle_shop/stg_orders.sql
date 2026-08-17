@@ -8,9 +8,9 @@ renamed as (
         customer as customer_id,
         ordered_at,
         store_id,
-        subtotal,
-        tax_paid,
-        order_total
+        {{ cents_to_dollars('subtotal') }} as subtotal,
+        {{ cents_to_dollars('tax_paid') }} as tax_paid,
+        {{ cents_to_dollars('order_total') }} as order_total
     from source
 )
 select * from renamed

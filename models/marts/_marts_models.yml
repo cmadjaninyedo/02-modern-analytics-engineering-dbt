@@ -1,4 +1,4 @@
-# models/marts/_marts__models.yml
+# models/marts/_marts_models.yml
 version: 2
 
 models:
@@ -24,13 +24,15 @@ models:
       - name: customer_id
         tests:
           - relationships:
-              to: ref('dim_customers')
-              field: customer_id
+              arguments:
+                to: ref('dim_customers')
+                field: customer_id
       - name: store_id
         tests:
           - relationships:
-              to: ref('dim_stores')
-              field: store_id
+              arguments:
+                to: ref('dim_stores')
+                field: store_id
 
   - name: fct_order_items
     columns:
@@ -39,10 +41,12 @@ models:
       - name: order_id
         tests:
           - relationships:
-              to: ref('fct_orders')
-              field: order_id
+              arguments:
+                to: ref('fct_orders')
+                field: order_id
       - name: product_sku
         tests:
           - relationships:
-              to: ref('dim_products')
-              field: product_sku
+              arguments:
+                to: ref('dim_products')
+                field: product_sku
