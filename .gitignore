@@ -8,3 +8,6 @@ logs/
 __pycache__/
 seeds/raw_orders_full_backup.csv
 seeds/raw_items_full_backup.csv
+jaffle_shop_dbt/
+warehouse/*.duckdb
+.user.yml
