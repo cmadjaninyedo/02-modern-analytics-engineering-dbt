@@ -1,0 +1,7 @@
+jaffle_shop_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: warehouse/jaffle_shop.duckdb
+      threads: 4

@@ -1,0 +1,10 @@
+venv_projetB/
+jaffle_shop_source/
+target/
+dbt_packages/
+jaffle_shop_source_fresh/
+logs/
+*.pyc
+__pycache__/
+seeds/raw_orders_full_backup.csv
+seeds/raw_items_full_backup.csv
