@@ -13,3 +13,4 @@ aggregated as (
     group by product_sku
 )
 select * from aggregated
+
