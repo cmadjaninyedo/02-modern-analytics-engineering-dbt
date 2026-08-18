@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: jaffle_shop
+    description: "Donnees brutes du cafe Jaffle Shop (dataset officiel dbt Labs, version moderne a 6 tables). Volume reduit a ~1 an de commandes pour rester leger a cloner (voir README)."
+    schema: main
+    tables:
+      - name: raw_customers
+        description: "Un client par ligne. Colonnes brutes : id, name."
+      - name: raw_orders
+        description: "Une commande par ligne. Montants en centimes. Colonnes brutes : id, customer, ordered_at, store_id, subtotal, tax_paid, order_total."
+      - name: raw_items
+        description: "Une ligne d'article commande par ligne (grain le plus fin). Un sku peut referencer soit un produit, soit une fourniture."
+      - name: raw_products
+        description: "Catalogue des produits vendus (jaffles et boissons). Prix en centimes."
+      - name: raw_supplies
+        description: "Fournitures utilisees pour preparer chaque produit (ingredients, emballages). Cout en centimes."
+      - name: raw_stores
+        description: "Un magasin par ligne, avec date d'ouverture et taux de taxe local."

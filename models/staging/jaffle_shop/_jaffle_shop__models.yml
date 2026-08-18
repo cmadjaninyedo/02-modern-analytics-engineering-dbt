@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Clients renommes en snake_case, correspondance 1:1 avec raw_customers."
+    columns:
+      - name: customer_id
+        description: "Identifiant unique du client (cle primaire)."
+        tests: [not_null, unique]
+
+  - name: stg_stores
+    description: "Magasins renommes en snake_case, correspondance 1:1 avec raw_stores."
+    columns:
+      - name: store_id
+        description: "Identifiant unique du magasin (cle primaire)."
+        tests: [not_null, unique]
+
+  - name: stg_products
+    description: "Catalogue produit avec prix converti de centimes en dollars via cents_to_dollars."
+    columns:
+      - name: product_sku
+        description: "Identifiant unique du produit (cle primaire, ex. JAF-001)."
+        tests: [not_null, unique]
+
+  - name: stg_orders
+    description: "Commandes avec montants convertis de centimes en dollars (subtotal, tax_paid, order_total)."
+    columns:
+      - name: order_id
+        description: "Identifiant unique de la commande (cle primaire)."
+        tests: [not_null, unique]
+
+  - name: stg_order_items
+    description: "Lignes d'articles commandes, grain le plus fin du dataset. Un order_id peut apparaitre plusieurs fois (plusieurs articles par commande, y compris plusieurs exemplaires du meme produit)."
+    columns:
+      - name: order_item_id
+        description: "Identifiant unique de la ligne d'article (cle primaire)."
+        tests: [not_null, unique]
+
+  - name: stg_supplies
+    description: "Fournitures avec cout converti de centimes en dollars via cents_to_dollars."

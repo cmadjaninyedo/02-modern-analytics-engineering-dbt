@@ -2,53 +2,68 @@ version: 2
 
 models:
   - name: dim_customers
+    description: "Une ligne par client, avec historique d'achat agrege (nombre de commandes, valeur totale, statut nouveau/recurrent)."
     columns:
       - name: customer_id
+        description: "Identifiant unique du client (cle primaire)."
         tests: [not_null, unique]
 
   - name: dim_products
+    description: "Une ligne par produit, avec prix, cout total en fournitures et marge unitaire calculee."
     columns:
       - name: product_sku
+        description: "Identifiant unique du produit (cle primaire)."
         tests: [not_null, unique]
 
   - name: dim_stores
+    description: "Une ligne par magasin, avec nombre de commandes et chiffre d'affaires total genere."
     columns:
       - name: store_id
+        description: "Identifiant unique du magasin (cle primaire)."
         tests: [not_null, unique]
 
   - name: fct_orders
+    description: "Table de faits au grain commande (une ligne = une commande), avec montants et nombre d'articles."
     columns:
       - name: order_id
+        description: "Identifiant unique de la commande (cle primaire)."
         tests: [not_null, unique]
       - name: customer_id
+        description: "Cle etrangere vers dim_customers."
         tests:
           - relationships:
               arguments:
                 to: ref('dim_customers')
                 field: customer_id
       - name: store_id
+        description: "Cle etrangere vers dim_stores."
         tests:
           - relationships:
               arguments:
                 to: ref('dim_stores')
                 field: store_id
       - name: order_total
+        description: "Montant total de la commande en dollars, taxes incluses."
         tests:
           - dbt_utils.accepted_range:
               arguments:
                 min_value: 0
 
   - name: fct_order_items
+    description: "Table de faits au grain ligne d'article (une ligne = un article commande), avec cout et marge par ligne. Un order_id peut apparaitre plusieurs fois si plusieurs articles ont ete commandes, y compris plusieurs exemplaires du meme produit (verifie en Jour 8)."
     columns:
       - name: order_item_id
+        description: "Identifiant unique de la ligne d'article (cle primaire)."
         tests: [not_null, unique]
       - name: order_id
+        description: "Cle etrangere vers fct_orders."
         tests:
           - relationships:
               arguments:
                 to: ref('fct_orders')
                 field: order_id
       - name: product_sku
+        description: "Cle etrangere vers dim_products."
         tests:
           - relationships:
               arguments:
