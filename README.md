@@ -126,11 +126,12 @@ dbt docs generate --profiles-dir . && dbt docs serve --profiles-dir .
 python scripts/export_marts_to_parquet.py
 ```
 
-Ouvre ensuite `docs/dashboard.pbix` dans Power BI Desktop, ou reconstruis le dashboard en connectant Power BI aux fichiers Parquet générés dans `docs/exports/` (voir README section "Connexion Power BI" du guide de réalisation pour le détail).
+Ouvre ensuite `docs/dashboard.pbix` dans Power BI Desktop, ou reconstruis le dashboard en connectant Power BI aux fichiers Parquet générés dans `docs/exports/`.
+Le fichier `docs/dashboard.pbix` pèse ~62 Mo car Power BI y embarque une copie complète des données sources pour permettre une ouverture immédiate sans reconfiguration. Alternative plus légère : régénérer les exports Parquet via python `scripts/export_marts_to_parquet.py` et reconstruire les connexions dans un nouveau fichier Power BI.
 
 ## Certification
 
-dbt Fundamentals (dbt Labs) — obtenue en parallèle de ce projet.
+dbt Fundamentals (dbt Labs), préparation en parallèle de ce projet.
 
 ## Auteur
 
